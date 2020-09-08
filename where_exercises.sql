@@ -9,6 +9,10 @@ FROM employees
 WHERE last_name LIKE 'E%';
 
 SELECT *
+FRom employees
+WHERE hire_date LIKE '199%';
+
+SELECT *
 FROM employees
 WHERE birth_date LIKE '%12-25';
 
@@ -24,18 +28,10 @@ WHERE first_name = 'Irena'
 
 SELECT *
 FROM employees
-WHERE first_name = 'Irena'
-  AND (
-        gender = 'M'
-    )
+WHERE (first_name = 'Irena'
    OR first_name = 'Vidya'
-    AND (
-              gender = 'M'
-          )
-   OR first_name = 'Maya'
-    AND (
-        gender = 'M'
-          );
+   OR first_name = 'Maya')
+    AND gender = 'M';
 
 SELECT *
 FROM employees
