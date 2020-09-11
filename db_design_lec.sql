@@ -32,3 +32,39 @@ WHERE author_id = 1;
 SELECT CONCAT(a.first_name, ' ', a.last_name) AS 'Author', content AS 'Quote' FROM quotes AS q
 JOIN authors a on q.author_id = a.id
 WHERE a.last_name LIKE '%t%';
+
+CREATE DATABASE IF NOT EXISTS events;
+USE events;
+
+CREATE TABLE attendees (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+INSERT INTO attendees (id, name) VALUES
+(1, 'Diana Prince'),
+(2, 'Tony STark'),
+(3, 'Bruce Banner'),
+(4, 'NAtalia Alianovia');
+
+CREATE TABLE presentations (
+    id INT UNSIGNED NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255),
+    location VARCHAR(255),
+    presentation_time DATETIME,
+    PRIMARY KEY (id)
+);
+
+INSERT INTO presentations (id, name, location, presentation_time) VALUES
+    (1, 'Test-Driven Develp', 'Conference room A', TIME('09:00:00')),
+    (2, 'Intro To management', 'Conference room B', TIME('09:00:00')),
+    (3, 'Java Design PAtterns', 'Conference room A', TIME('10:30:00')),
+    (4, 'Development Methods', 'Conferecne room B', TIME('10:30:00'));
+
+CREATE TABLE attendees_presentations (
+    attendee_id INT UNSIGNED NOT NULL,
+    presentation_id INT UNSIGNED NOT NULL,
+    FOREIGN KEY (attendee_id) REFERENCES attendees(id),
+    FOREIGN KEY (presentation_id) REFERENCES presentations(id)
+);
