@@ -44,3 +44,12 @@ WHERE dept_no IN (
         FROM employees
         WHERE gender = 'F'))
 ORDER BY dept_name;
+
+SELECT CONCAT(first_name, ' ', last_name) AS full_name
+FROM employees
+WHERE emp_no IN (
+    SELECT emp_no
+    FROM salaries
+    WHERE salary IN (
+        SELECT MAX(salary)
+        FROM salaries));
